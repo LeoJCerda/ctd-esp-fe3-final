@@ -29,6 +29,7 @@ const dentReducer = (state, action) => {
     }
 }
 
+
 const Context = ({children}) => {
     const [detail, setDetail] = useState({})
     //const [favState, setFavState] = useState({})

@@ -218,6 +218,10 @@ tr:nth-child(even) {
 .dark > a {
   color: white;
 }
+.light{
+  background-color: #fff;
+  color: #333;
+}
 .subtitulo{
   display:flex;
   flex-direction: column;
