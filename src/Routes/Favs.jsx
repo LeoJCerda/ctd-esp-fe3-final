@@ -16,27 +16,13 @@ const Favs = () => {
   }
   console.log(favState);
   return (
-    <>
+    <div className="favoritos">
       <h1>Dentistas favoritos</h1>
-      <button className="favButton" onClick={clearFavs}>resetar favoritos</button>
-      <div className="card-grid">
-        {/* este componente debe consumir los destacados del localStorage */}
-        {/* Deberan renderizar una Card por cada uno de ellos */}
-        {favState.map((favorito)=>(
-              <Card 
-                    key={favorito.id}
-                    name={favorito.name}
-                    username={favorito.username} 
-                    id={favorito.id}
-              />
-                
-          
-          
-        
-          
-        ))}
+      <div className="card-grid-fav">
+        {favState.map((favorito)=>( <Card key={favorito.id} name={favorito.name} username={favorito.username} id={favorito.id}/>))}
       </div>
-    </>
+      <button className="resetButton" onClick={clearFavs}>resetar favoritos</button>
+    </div>
   );
 };
 
