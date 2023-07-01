@@ -2,7 +2,6 @@
 import React from "react";
 import { useState } from "react";
 import SendForm from "./SendForm";
-//import { useGlobalstates } from "../Context/Context";
 import { Link } from "react-router-dom";
 import { routes } from "../Utils/routes";
 import { useGlobalstates } from "../Context/Context";
@@ -16,6 +15,8 @@ const Form = () => {
   const [consulta, setConsulta] = useState('')
   const [error, setError] = useState(false)
   const [show, setShow] = useState(false)
+  const expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  const esValido = expReg.test(email)
   //Aqui deberan implementar el form completo con sus validaciones
   
   const onChangeNombre = (e) =>{
@@ -30,19 +31,18 @@ const Form = () => {
   
   const handleSubmit = e =>{
     e.preventDefault()
-    if(nombreContacto.length >= 5 && email) {
+    if(nombreContacto.length >= 5) {
       
       setShow(true)
       setError(false)
       
-      console.log(nombreContacto, email, consulta)
-      e.target.reset()
-      setEmail('')
-      //setNombreContacto('')
-      setConsulta('')
       
-    }
-    else {   
+    }else if(esValido){
+      setShow(true)
+      setError(false)
+      setEmail('')
+      setConsulta('')
+    }else {   
       setError(true)
       
     }
@@ -78,7 +78,7 @@ const Form = () => {
               <textarea
                   type="textArea"
                   placeholder="maximo 200 caracteres"
-                  rows={4} cols={30}
+                  rows={2} cols={30}
                   value={consulta}
                   id="consulta"
                   name="consulta" 

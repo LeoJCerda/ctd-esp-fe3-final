@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useState, useReducer, useEffect } from "react";
-import Favs from "../Routes/Favs";
+
 
 export const GlobalStates = createContext()
 
@@ -30,9 +30,9 @@ const dentReducer = (state, action) => {
 }
 
 
+// eslint-disable-next-line react/prop-types
 const Context = ({children}) => {
     const [detail, setDetail] = useState({})
-    //const [favState, setFavState] = useState({})
     const [nombreContacto, setNombreContacto] = useState()
     const [theme, setTheme] = useState('light')
     const [dentista, setDentista] = useState([])
@@ -49,15 +49,8 @@ const Context = ({children}) => {
         console.log(favState)
         localStorage.setItem('favs', JSON.stringify(favState))
     }, [favState])
-   
     
-
     console.log('este es el CONTEXT')
-
-   
-
-
-
     return (
         <GlobalStates.Provider value={{
             nombreContacto, setNombreContacto,
@@ -66,8 +59,7 @@ const Context = ({children}) => {
             favState, favDispatch, 
             dentState, dentDispatch,
             detail, setDetail
-
-        }}>
+            }}>
             {children}
         </GlobalStates.Provider>
     )
